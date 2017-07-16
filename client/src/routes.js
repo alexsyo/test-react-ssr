@@ -25,7 +25,10 @@ class Routes extends Component {
 export default Routes;
 
 // ---------------------------------------------
-// low level api to use with react-router-config
+// low level api to use with react-router-config like so:
+//  <Router>
+//    {renderRoutes(routes)}
+//  </Router>
 //
 //
 // export default [
