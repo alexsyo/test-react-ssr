@@ -1,6 +1,6 @@
 # Server Side rendering
 
-yo
+testing server side rendering over http2 protocol
 
 ## prepare
 
