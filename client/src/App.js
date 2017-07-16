@@ -37,7 +37,7 @@ class App extends Component {
       <div>
         {this.props.data}
         <Navigation />
-        {renderRoutes(route.routes)}
+        {this.props.children}
       </div>
     );
   }

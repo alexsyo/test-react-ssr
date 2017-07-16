@@ -6,16 +6,16 @@ import { Provider } from 'react-redux';
 import storeCreator from './redux/storeCreator';
 //import style from './sass/main.scss';
 import html from './index.html';
-import routes from './routes';
+import Routes from './Routes';
 
 // Grab the state from a global variable injected into the server-generated HTML
-const preloadedState = window.__PRELOADED_STATE__;
+const preloadedState = window.__PRELOADED_STATE__ || {};
 const store = storeCreator(preloadedState);
 
 render(
   <Provider store={store}>
     <Router>
-      {renderRoutes(routes)}
+      <Routes />
     </Router>
   </Provider>,
   document.getElementById('app')

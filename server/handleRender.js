@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import renderInitialPage from './renderInitialPage'
 import storeCreator from '../client/src/redux/storeCreator'
-import routes from '../client/src/routes'
+import Routes from '../client/src/Routes'
 
 // react-router context
 const context = {};
@@ -17,7 +17,7 @@ export default (req, res) => {
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter context={context} location={req.url}>
-        {renderRoutes(routes)}
+        <Routes />
       </StaticRouter>
     </Provider> )
 
