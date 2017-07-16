@@ -5,35 +5,38 @@ import { renderRoutes, matchRoutes } from 'react-router-config'
 import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import renderInitialPage from './renderInitialPage'
-import store from '../client/src/redux/store'
+import storeCreator from '../client/src/redux/storeCreator'
 import routes from '../client/src/routes'
 
 // react-router context
 const context = {};
+const store = storeCreator();
 
 export default (req, res) => {
   // Render the component to a string
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter context={context} location={req.url}>
-      {renderRoutes(routes)}
+        {renderRoutes(routes)}
       </StaticRouter>
     </Provider> )
 
   // Grab the initial state from our Redux store
   const preloadedState = store.getState()
 
-  const requests = matchRoutes(routes, req.url)
-    .map(({route, match}) => {
-      return route.component.loadData
-        ? router.component.loadData(match)
-        : Promise.resolve(null)
-    })
+  // const requests = matchRoutes(routes, req.url)
+  //   .map(({route, match}) => {
+  //     return route.component.loadData
+  //       ? router.component.loadData(match)
+  //       : Promise.resolve(null)
+  //   })
 
-  Promise.all(requests)
-    .then((data) => {
-      res.send(renderInitialPage(html, preloadedState))
-    })
+  // Promise.all(requests)
+  //   .then((data) => {
+  //     res.send(renderInitialPage(html, preloadedState))
+  //   })
+
+  res.send(renderInitialPage(html, preloadedState))
 
   //if(context.url) {
   //  console.log(context);
